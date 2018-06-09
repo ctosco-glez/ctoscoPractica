@@ -41,8 +41,11 @@ export class LoginPage {
 		console.log("Peticion login: " + this.id);
 
 		// Ir a pág menú
-		if (this.id != '')
-			this.navCtrl.push(MenuPage);
+		if (this.id != ''){
+			this.navCtrl.push(MenuPage, {
+      			idUser: this.id,
+    		});
+		}
 
 	 }, error => {
 	 	console.log("Credenciales incorrectas");

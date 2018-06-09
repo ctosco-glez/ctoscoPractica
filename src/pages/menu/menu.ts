@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
+
+import { ListadoAvesPage } from '../listado_aves/listado_aves';
+import { AddAvePage } from '../add_ave/add_ave';
+import { ListadoAvesPage } from '../listado_aves/listado_aves';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-menu',
@@ -10,30 +16,35 @@ export class MenuPage {
 
   data:any = {};
 
+  params: Object;
+  irListadoAves: any;
+  irAddAve: any;
+  idUser: string;
 
-  constructor(public navCtrl: NavController, public http: Http) {
-  	
- 
+  constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams){
+    //this.irListadoAves = ListadoAvesPage;
+    //this.irAddAve = AddAvePage;
+
+    this.idUser = navParams.get("idUser");
+
+
   }
 
-/*
-  submit() {
-	 var link = 'http://dev.contanimacion.com/birds/public/login/';
-	 var myData = JSON.stringify({user: this.data.userlabel, password: this.data.passlabel});
-	 
-	 this.http.post(link, myData, {headers: {'Content-Type' : 'application/json'}})
-	 .subscribe(data => {
-	 	
-	 	this.data.r_status = data["status"]; 
-	 	this.data.r_id = data["id"]; 
-		
-		console.log("Peticion login: " + data);
+  cerrarSesion() {
+    this.navCtrl.setRoot(LoginPage);
+  }
 
-	 	console.log("Id: " + data + this.data.r_id);
+  irListadoAves() {
+  	this.navCtrl.push(ListadoAvesPage, {
+      			idUser: this.idUser,
+    		});
+  }
 
-	 }, error => {
-	 	console.log("Credenciales incorrectas");
-	 });
-  }*/
+
+  irAddAve() {
+  	this.navCtrl.push(AddAvePage, {
+      			idUser: this.idUser,
+    		});
+  }
 
 }

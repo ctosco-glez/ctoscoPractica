@@ -1,3 +1,29 @@
 page-login {
 
+	.circle-pic > img {
+		-webkit-border-radius: 50%;
+	    border-radius: 50%;
+	}
+	ion-img {
+		background-color: transparent;
+	}
+
+	#logo.circle-pic > img {
+		border: 3px solid #ff7309;
+	}
+
+	#user-photo.circle-pic > img {
+		border: thin solid #aaa5a2;
+	}
+
+	ion-row {
+		text-align: center;
+	}
+	ion-col p {
+		text-align: left;
+	}
+
+	#info-user {
+		margin-top: 200px;
+	}
 }

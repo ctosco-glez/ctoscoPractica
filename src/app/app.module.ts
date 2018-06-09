@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule} from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -26,7 +27,8 @@ import { ListadoAvesPage } from '../pages/listado_aves/listado_aves';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

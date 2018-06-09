@@ -13,11 +13,11 @@
 
     <ion-row>
       <ion-col>
-        <button ion-button round large onclick="">LISTADO DE AVES</button>
+        <button ion-button round large (click)="irListadoAves()">LISTADO DE AVES</button>
       </ion-col>
 
       <ion-col>
-        <button ion-button round large>AÑADIR AVE</button>
+        <button ion-button round large (click)="irAddAve()">AÑADIR AVE</button>
       </ion-col>
     </ion-row>
 
@@ -27,7 +27,7 @@
       </ion-col>
 
       <ion-col>
-        <button ion-button round large>DESCONECTAR</button>
+        <button ion-button round large (click)="cerrarSesion()">DESCONECTAR</button>
       </ion-col>
     </ion-row>
 

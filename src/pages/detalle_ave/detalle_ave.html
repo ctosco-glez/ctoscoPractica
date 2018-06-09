@@ -12,26 +12,38 @@
   <ion-grid>
 
     <ion-row>
-      <ion-col>
-        <button ion-button round large onclick="">LISTADO DE AVES</button>
+      <ion-col class="col-img">
+        <img src="{{ imagen }}" width="200" height="200" class="img-detalle"/>
       </ion-col>
+    </ion-row>
 
+     <ion-row>
       <ion-col>
-        <button ion-button round large>AÑADIR AVE</button>
+        <h2>{{ nombre }}</h2>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <button ion-button round large>INFO</button>
+        <p>{{ descripcion }}</p>
       </ion-col>
+    </ion-row>
 
+    <ion-row>
       <ion-col>
-        <button ion-button round large>DESCONECTAR</button>
+        <h6>Avistamientos:</h6>
+      <ion-badge item-end color="{{ mine < 1 ? 'danger' : 'secondary' }}">{{ mine }}</ion-badge>
       </ion-col>
     </ion-row>
 
   </ion-grid>
+
+
+  <ion-card>
+    <img src=""/>
+    <div class="tit-detalle"></div>
+    <div class="card-subtitle"></div>
+  </ion-card>
 
   
 	

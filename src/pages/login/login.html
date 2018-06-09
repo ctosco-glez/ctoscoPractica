@@ -9,24 +9,68 @@
 
 <ion-content padding>
 
-	<form (ngSubmit)="submit()" >
+	<ion-grid>
+  		<ion-row>
+  			<ion-col col-2>
+  			</ion-col>
 
-		<ion-item>
- 	    	<ion-label fixed>User</ion-label>
-   			<ion-input type="text" required value="" name="userlabel" [(ngModel)]="data.userlabel"></ion-input>
- 		</ion-item>
+    		<ion-col col-8>
+				<ion-img id="logo" width="225" height="225" src="http://dev.contanimacion.com/birds/public/assets/bird_04.png" class="circle-pic"></ion-img>
+			</ion-col>
 
- 		<ion-item>
-   			<ion-label fixed>Password</ion-label>
-   			<ion-input type="password" required name="passlabel" [(ngModel)]="data.passlabel"></ion-input>
- 		</ion-item>
+			<ion-col col-2>
+  			</ion-col>
+		</ion-row>
 
-		<ion-item>
- 			<button ion-button type="submit">Login
-  				<ion-icon name="arrow-forward"></ion-icon>
- 			</button>
- 		</ion-item>
+	</ion-grid>
 
-	</form>
+	
+	
+	<ion-row>
+		<ion-col>
+			<form (ngSubmit)="submit()" >
+
+				<ion-item>
+		 	    	<ion-label floating>User</ion-label>
+		   			<ion-input type="text" required value="" name="userlabel" [(ngModel)]="data.userlabel"></ion-input>
+		 		</ion-item>
+
+		 		<ion-item>
+		   			<ion-label floating>Password</ion-label>
+		   			<ion-input type="password" required name="passlabel" [(ngModel)]="data.passlabel"></ion-input>
+		 		</ion-item>
+
+				<ion-item>
+		 			<button ion-button type="submit">Login
+		  				<ion-icon name="arrow-forward"></ion-icon>
+		 			</button>
+		 		</ion-item>
+
+			</form>
+		</ion-col>
+	</ion-row>
+
+
+	<ion-row id="info-user">
+
+		<ion-col col-2>
+		</ion-col>
+
+		<ion-col col-8>
+			<ion-row>
+			<ion-col style="text-align: right; padding-right: 20px;">
+				<ion-img id="user-photo" width="50" height="50" src="https://media.licdn.com/dms/image/C4E03AQEG35IcHLUUcw/profile-displayphoto-shrink_200_200/0?e=1533772800&v=beta&t=Tbcl-_T8-XlvR4RF6nfN1kWTGmYwQjWSC0OdUyzB64g" class="circle-pic"></ion-img>
+			</ion-col>
+
+			<ion-col>
+				<p>Cristina Tosco González<br>
+				<strong>ctosco@uoc.edu</strong></p>
+			</ion-col>
+			</ion-row>
+		</ion-col>
+
+		<ion-col col-2>
+		</ion-col>
+	</ion-row>
 
 </ion-content>
