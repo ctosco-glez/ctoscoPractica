@@ -12,15 +12,19 @@ export class AddAvePage {
   data:any = {};
   myForm: FormGroup;
 
+  contrario: boolean;
+
+  addAvis: boolean;
 
   constructor(public navCtrl: NavController, public http: Http, public fb: FormBuilder) {
   	this.myForm = this.fb.group({
       nombrelabel: ['', [Validators.required]],
       descripcionlabel: ['', [Validators.required, Validators.minLength(20)]],
       checklabel: [''],
-      lugarlabel: ['', [Validators.required]],
+      lugarlabel: [''],
     });
  
+ 	this.addAvis = true;
   }
 
 
@@ -29,6 +33,11 @@ export class AddAvePage {
 
   }
 
+
+  actualizarCheck() {
+  	console.log('Cucumbers new state:' + this.addAvis);
+  	this.contrario = !this.addAvis;
+  }
 
 /*
   submit() {

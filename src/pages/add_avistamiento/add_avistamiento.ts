@@ -63,11 +63,11 @@ export class AddAvistamientoPage {
 
 
   addAvistamiento() {
-  	 
+
 	var link = 'http://dev.contanimacion.com/birds/public/addSighting/';
 	 var myData = JSON.stringify({idAve: this.idAve, place: this.data.lugarlabel, long: this.long, lat: this.lat});
 	 
-	 this.http.post(link, myData, {headers: {'Content-Type' : 'application/json'}})
+	 this.http.post(link, myData, {headers: {'Content-Type': 'application/json'}})
 	 .subscribe(data => {
 
 	 	data = data.json();
@@ -81,7 +81,8 @@ export class AddAvistamientoPage {
 		    let toast = this.toastCtrl.create({
 		      message: 'Avistamiento añadido correctamente',
 		      duration: 3000,
-		      position: 'bottom'
+		      position: 'top',
+		      dismissOnPageChange: false
 		    });
 
 			toast.present(toast);

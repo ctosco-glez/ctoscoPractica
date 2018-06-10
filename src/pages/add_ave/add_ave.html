@@ -33,12 +33,12 @@
 
     <ion-item>
       <ion-label>Ha sido visto</ion-label>
-      <ion-checkbox color="dark" checked="true" name="checklabel" formControlName="checklabel"></ion-checkbox>
+      <ion-checkbox color="dark" name="checklabel" formControlName="checklabel" [(ngModel)]="addAvis" (ionChange)="actualizarCheck()"></ion-checkbox>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Lugar</ion-label>
-      <ion-input type="text" required name="lugarlabel" [(ngModel)]="data.lugarlabel" formControlName="lugarlabel"></ion-input> 
+      <ion-input type="text" required name="lugarlabel" [(ngModel)]="data.lugarlabel" formControlName="lugarlabel" [hidden]="contrario"></ion-input> 
     </ion-item>
 
     <ion-item *ngIf="myForm.get('lugarlabel').errors && myForm.get('lugarlabel').dirty">
@@ -46,7 +46,7 @@
     </ion-item>
 
     <ion-item>
-      <button ion-button full block type="submit" [disabled]="myForm.invalid">Enviar</button>
+      <button ion-button full block type="submit" [disabled]="myForm.get('nombrelabel').hasError('required') || myForm.get('descripcionlabel').hasError('minlength') || myForm.get('descripcionlabel').hasError('required') || !(contrario || !myForm.get('lugarlabel').hasError('required'))">Enviar</button>
     </ion-item>
         
   </form>
