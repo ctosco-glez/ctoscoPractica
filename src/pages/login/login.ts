@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import { MenuPage } from '../menu/menu';
 
@@ -13,17 +14,22 @@ export class LoginPage {
 
   data:any = {};
   public id:string = '';
+  myLogin: FormGroup;
 
 
   
 
-  constructor(public navCtrl: NavController, public http: Http) {
+  constructor(public navCtrl: NavController, public http: Http, public fb: FormBuilder) {
   	this.data.userlabel = '';
   	this.data.passlabel = '';
 
  	this.data.r_status = '';
  	this.data.r_id = '';
  
+ 	this.myLogin = this.fb.group({
+      userlabel: ['', [Validators.required]],
+      passlabel: ['', [Validators.required]],
+    });
   }
 
 

@@ -9,31 +9,25 @@
 
 <ion-content padding>
 
-  <ion-grid>
+  <form [formGroup]="addAvistamientoForm" (ngSubmit)="addAvistamiento()">
+   
+    <ion-item>
+      <ion-label floating>Lugar</ion-label>
+      <ion-input type="text" required name="lugarlabel" formControlName="lugarlabel" [(ngModel)]="data.lugarlabel"></ion-input> 
+    </ion-item>
+   
+    <ion-item>
+      <button ion-button full type="submit" [disabled]="!localizacionPermitida || addAvistamientoForm.invalid">Enviar</button>
+    </ion-item>
 
-    <ion-row>
-      <ion-col>
-        <button ion-button round large onclick="">LISTADO DE AVES</button>
-      </ion-col>
+    <ion-item *ngIf="addAvistamientoForm.get('lugarlabel').errors">
+      <p color="danger" ion-text *ngIf="addAvistamientoForm.get('lugarlabel').hasError('required')">El lugar de avistamiento es requerido</p>
+    </ion-item>
 
-      <ion-col>
-        <button ion-button round large>AÑADIR AVE</button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <button ion-button round large>INFO</button>
-      </ion-col>
-
-      <ion-col>
-        <button ion-button round large>DESCONECTAR</button>
-      </ion-col>
-    </ion-row>
-
-  </ion-grid>
-
-  
-	
+    <ion-item *ngIf="!localizacionPermitida">
+      <p color="danger" ion-text>Geolocalización requerida</p>
+    </ion-item>
+       
+  </form>
 
 </ion-content>

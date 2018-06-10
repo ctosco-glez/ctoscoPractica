@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
+import { Geolocation } from '@ionic-native/geolocation';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+
+
 
 @Component({
   selector: 'page-addavistamiento',
@@ -9,12 +13,47 @@ import { Http } from '@angular/http';
 export class AddAvistamientoPage {
 
   data:any = {};
+  addAvistamientoForm: FormGroup;
+
+  lat: any = 0;
+  long: any = 0;
+
+  localizacionPermitida: boolean = true;
 
 
-  constructor(public navCtrl: NavController, public http: Http) {
+  constructor(public navCtrl: NavController, public http: Http, public geolocation: Geolocation, public fb: FormBuilder) {
+
+  	this.geolocation = geolocation;
+
+  	this.addAvistamientoForm = this.fb.group({
+      lugarlabel: ['', [Validators.required]],
+    });
+
+    this.obtenerLocalizacion();
   	
  
   }
+
+
+
+  obtenerLocalizacion() {
+  
+	  this.geolocation.getCurrentPosition().then((resp) => {
+		    console.log("latitud: " + resp.coords.latitude);
+			console.log("longitud: " + resp.coords.longitude);
+	  }).catch((error) => {
+			console.log('Error getting location', error);
+			this.localizacionPermitida = false;
+	  });
+
+  }
+
+
+  addAvistamiento() {
+
+  }
+
+
 
 /*
   submit() {

@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 
+import { AddAvistamientoPage } from '../add_avistamiento/add_avistamiento';
 
 @Component({
   selector: 'page-detalleave',
@@ -15,7 +16,7 @@ export class DetalleAvePage {
 
   imagen: string;
   nombre: string;
-  mine: int;
+  mine: number;
   descripcion: string;
 
   
@@ -49,6 +50,11 @@ export class DetalleAvePage {
 	 }, error => {
 	 	console.log("No ha sido posible obtener los datos del ave seleccionada.");
 	 });
+  }
+
+
+  irAddAvistamiento() {
+  	this.navCtrl.push(AddAvistamientoPage);
   }
 
 }

@@ -9,29 +9,58 @@
 
 <ion-content padding>
 
-  <ion-grid>
+  <form [formGroup]="myForm" (ngSubmit)="addAve()" novalidate>
+    
+    <ion-item>
+      <ion-label floating>Nombre</ion-label>
+      <ion-input type="text" required name="nombrelabel" formControlName="nombrelabel" [(ngModel)]="data.nombrelabel"></ion-input> 
+    </ion-item>
 
-    <ion-row>
-      <ion-col>
-        <button ion-button round large onclick="">LISTADO DE AVES</button>
-      </ion-col>
+    <ion-item *ngIf="myForm.get('nombrelabel').errors && myForm.get('nombrelabel').dirty">
+      <p color="danger" ion-text *ngIf="myForm.get('nombrelabel').hasError('required')">El nombre es requerido</p>
+    </ion-item>
+  
 
-      <ion-col>
-        <button ion-button round large>AÑADIR AVE</button>
-      </ion-col>
-    </ion-row>
+    <ion-item>
+      <ion-label stacked>Descripción</ion-label>
+      <ion-textarea [(ngModel)]="data.descripcionlabel" name="descripcionlabel" formControlName="descripcionlabel"></ion-textarea>
+    </ion-item>
 
-    <ion-row>
-      <ion-col>
-        <button ion-button round large>INFO</button>
-      </ion-col>
+    <ion-item *ngIf="myForm.get('descripcionlabel').errors && myForm.get('descripcionlabel').dirty">
+      <p color="danger" ion-text *ngIf="myForm.get('descripcionlabel').hasError('minlength')">Mínimo 20 caracteres</p>
+    </ion-item>
 
-      <ion-col>
-        <button ion-button round large>DESCONECTAR</button>
-      </ion-col>
-    </ion-row>
 
-  </ion-grid>
+    <ion-item>
+      <ion-label>Ha sido visto</ion-label>
+      <ion-checkbox color="dark" checked="true" name="checklabel" formControlName="checklabel"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Lugar</ion-label>
+      <ion-input type="text" required name="lugarlabel" [(ngModel)]="data.lugarlabel" formControlName="lugarlabel"></ion-input> 
+    </ion-item>
+
+    <ion-item *ngIf="myForm.get('lugarlabel').errors && myForm.get('lugarlabel').dirty">
+      <p color="danger" ion-text *ngIf="myForm.get('lugarlabel').hasError('required')">El nombre es requerido</p>
+    </ion-item>
+
+    <ion-item>
+      <button ion-button full block type="submit" [disabled]="myForm.invalid">Enviar</button>
+    </ion-item>
+
+    <ion-list>
+      <ion-item *ngFor="let avistamiento of avistamientos">
+        <ion-avatar item-start>
+          <img src="{{ avistamiento.bird_image }}">
+        </ion-avatar>
+        <h2>{{ avistamiento.bird_name }}</h2>
+        <ion-badge item-end color="{{ avistamiento.mine < 1 ? 'danger' : 'secondary' }}">{{ avistamiento.mine }}</ion-badge>
+        <p>{{ avistamiento.bird_sightings }}</p>
+      </ion-item>
+    </ion-list>
+        
+  </form>
 
   
 	

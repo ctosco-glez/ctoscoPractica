@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'page-addave',
@@ -9,12 +10,25 @@ import { Http } from '@angular/http';
 export class AddAvePage {
 
   data:any = {};
+  myForm: FormGroup;
 
 
-  constructor(public navCtrl: NavController, public http: Http) {
-  	
+  constructor(public navCtrl: NavController, public http: Http, public fb: FormBuilder) {
+  	this.myForm = this.fb.group({
+      nombrelabel: ['', [Validators.required]],
+      descripcionlabel: ['', [Validators.required, Validators.minLength(20)]],
+      checklabel: [''],
+      lugarlabel: ['', [Validators.required]],
+    });
  
   }
+
+
+  addAve() {
+
+
+  }
+
 
 /*
   submit() {
