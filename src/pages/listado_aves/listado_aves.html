@@ -10,14 +10,14 @@
 <ion-content padding>
 
   <ion-list>
-  <ion-item *ngFor="let ave of aves" (click)="verDetalle(ave.id)">
-    <ion-avatar item-start>
-      <img src="{{ ave.bird_image }}">
-    </ion-avatar>
-    <h2>{{ ave.bird_name }}</h2>
-    <ion-badge item-end color="{{ ave.mine < 1 ? 'danger' : 'secondary' }}">{{ ave.mine }}</ion-badge>
-    <p>{{ ave.bird_sightings }}</p>
-  </ion-item>
+    <ion-item *ngFor="let ave of aves" (click)="verDetalle(ave.id)">
+      <ion-avatar item-start>
+        <img src="{{ ave.bird_image }}">
+      </ion-avatar>
+      <h2>{{ ave.bird_name }}</h2>
+      <ion-badge item-end color="{{ ave.mine < 1 ? 'danger' : 'secondary' }}">{{ ave.mine }}</ion-badge>
+      <p>{{ ave.bird_sightings }}</p>
+    </ion-item>
   </ion-list>
 
 </ion-content>

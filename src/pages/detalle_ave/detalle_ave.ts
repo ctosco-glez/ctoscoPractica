@@ -58,7 +58,10 @@ export class DetalleAvePage {
 
 
   irAddAvistamiento() {
-  	this.navCtrl.push(AddAvistamientoPage);
+  	console.log("id ave para enviar:" + this.idAve);
+  	this.navCtrl.push(AddAvistamientoPage, {
+      			idAve: this.idAve,
+    		});
   }
 
 }

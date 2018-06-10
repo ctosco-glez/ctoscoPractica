@@ -5,7 +5,6 @@ import { Http } from '@angular/http';
 
 import { ListadoAvesPage } from '../listado_aves/listado_aves';
 import { AddAvePage } from '../add_ave/add_ave';
-import { ListadoAvesPage } from '../listado_aves/listado_aves';
 import { LoginPage } from '../login/login';
 
 @Component({

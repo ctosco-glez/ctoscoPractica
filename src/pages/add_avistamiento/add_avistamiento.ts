@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+import { DetalleAvePage } from '../detalle_ave/detalle_ave';
 
 
 @Component({
@@ -18,61 +19,84 @@ export class AddAvistamientoPage {
   lat: any = 0;
   long: any = 0;
 
-  localizacionPermitida: boolean = true;
+  idAve: string;
+
+  localizacionPermitida: boolean = false;
 
 
-  constructor(public navCtrl: NavController, public http: Http, public geolocation: Geolocation, public fb: FormBuilder) {
+  constructor(public navCtrl: NavController, public http: Http, public geolocation: Geolocation, public fb: FormBuilder, public navParams: NavParams, public toastCtrl: ToastController) {
+
+  	// Obtener id ave
+  	this.idAve = navParams.get("idAve");
 
   	this.geolocation = geolocation;
+  	this.obtenerLocalizacion();
 
   	this.addAvistamientoForm = this.fb.group({
       lugarlabel: ['', [Validators.required]],
     });
-
-    this.obtenerLocalizacion();
-  	
  
   }
 
 
 
   obtenerLocalizacion() {
-  
+
 	  this.geolocation.getCurrentPosition().then((resp) => {
-		    console.log("latitud: " + resp.coords.latitude);
-			console.log("longitud: " + resp.coords.longitude);
+
+			this.lat = resp.coords.latitude;
+			this.long = resp.coords.longitude;
+
+			console.log("latitud: " + this.lat);
+			console.log("longitud: " + this.long);
+
+			this.localizacionPermitida = true;
+
+
 	  }).catch((error) => {
 			console.log('Error getting location', error);
 			this.localizacionPermitida = false;
+
 	  });
 
   }
 
 
   addAvistamiento() {
-
-  }
-
-
-
-/*
-  submit() {
-	 var link = 'http://dev.contanimacion.com/birds/public/login/';
-	 var myData = JSON.stringify({user: this.data.userlabel, password: this.data.passlabel});
+  	 
+	var link = 'http://dev.contanimacion.com/birds/public/addSighting/';
+	 var myData = JSON.stringify({idAve: this.idAve, place: this.data.lugarlabel, long: this.long, lat: this.lat});
 	 
 	 this.http.post(link, myData, {headers: {'Content-Type' : 'application/json'}})
 	 .subscribe(data => {
-	 	
-	 	this.data.r_status = data["status"]; 
-	 	this.data.r_id = data["id"]; 
-		
-		console.log("Peticion login: " + data);
 
-	 	console.log("Id: " + data + this.data.r_id);
+	 	data = data.json();
+
+	 	this.data.r_status = data["status"]; 
+
+	 	console.log("respuesta insertar avistamiento: " + data["status"]);
+
+	 	if (this.data.r_status == "OK") {
+
+		    let toast = this.toastCtrl.create({
+		      message: 'Avistamiento añadido correctamente',
+		      duration: 3000,
+		      position: 'bottom'
+		    });
+
+			toast.present(toast);
+
+		 	// Si se inserta correctamente
+	  		this.navCtrl.push(DetalleAvePage, {
+	      		idAve: this.idAve,
+	    	});
+
+    	}
 
 	 }, error => {
-	 	console.log("Credenciales incorrectas");
+	 	console.log("No se ha podido insertar avistamiento");
 	 });
-  }*/
+  }
+
 
 }
