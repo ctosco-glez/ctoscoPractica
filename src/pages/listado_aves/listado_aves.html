@@ -16,7 +16,11 @@
       </ion-avatar>
       <h2>{{ ave.bird_name }}</h2>
       <ion-badge item-end color="{{ ave.mine < 1 ? 'danger' : 'secondary' }}">{{ ave.mine }}</ion-badge>
-      <p>{{ ave.bird_sightings }}</p>
+      <p>Avistamientos totales: {{ ave.bird_sightings }}</p>
+    </ion-item>
+
+    <ion-item>
+        <button ion-button round outline full (click)="irAddAve()" color="dark">Añadir ave</button>
     </ion-item>
   </ion-list>
 

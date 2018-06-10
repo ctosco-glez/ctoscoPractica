@@ -4,6 +4,8 @@ import { NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { DetalleAvePage } from '../detalle_ave/detalle_ave';
+import { AddAvePage } from '../add_ave/add_ave';
+
 
 @Component({
   selector: 'page-listadoaves',
@@ -50,6 +52,14 @@ export class ListadoAvesPage {
 
   	this.navCtrl.push(DetalleAvePage, {
       			idAve: idAve,
+    		});
+  }
+
+
+
+  irAddAve() {
+  	this.navCtrl.push(AddAvePage, {
+      			idUser: this.idUser,
     		});
   }
 

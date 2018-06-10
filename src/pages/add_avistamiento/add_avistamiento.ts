@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { DetalleAvePage } from '../detalle_ave/detalle_ave';
 
 
+
 @Component({
   selector: 'page-addavistamiento',
   templateUrl: 'add_avistamiento.html'
