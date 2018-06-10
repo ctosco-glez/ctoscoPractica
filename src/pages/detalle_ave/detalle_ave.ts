@@ -19,6 +19,8 @@ export class DetalleAvePage {
   mine: number;
   descripcion: string;
 
+  avistamientos: any[];
+
   
 
 
@@ -45,6 +47,8 @@ export class DetalleAvePage {
 		this.nombre = data[0]["bird_name"];
 		this.mine = data[0]["bird_sightings"];
 		this.descripcion = data[0]["bird_description"];
+
+		this.avistamientos = data[0]["sightings_list"];
 
 
 	 }, error => {

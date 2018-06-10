@@ -17,16 +17,11 @@ export class MenuPage {
   data:any = {};
 
   params: Object;
-  irListadoAves: any;
-  irAddAve: any;
   idUser: string;
 
   constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams){
-    //this.irListadoAves = ListadoAvesPage;
-    //this.irAddAve = AddAvePage;
 
     this.idUser = navParams.get("idUser");
-
 
   }
 

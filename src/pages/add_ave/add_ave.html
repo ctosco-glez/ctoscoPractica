@@ -48,17 +48,6 @@
     <ion-item>
       <button ion-button full block type="submit" [disabled]="myForm.invalid">Enviar</button>
     </ion-item>
-
-    <ion-list>
-      <ion-item *ngFor="let avistamiento of avistamientos">
-        <ion-avatar item-start>
-          <img src="{{ avistamiento.bird_image }}">
-        </ion-avatar>
-        <h2>{{ avistamiento.bird_name }}</h2>
-        <ion-badge item-end color="{{ avistamiento.mine < 1 ? 'danger' : 'secondary' }}">{{ avistamiento.mine }}</ion-badge>
-        <p>{{ avistamiento.bird_sightings }}</p>
-      </ion-item>
-    </ion-list>
         
   </form>
 

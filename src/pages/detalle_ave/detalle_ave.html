@@ -32,7 +32,9 @@
     <ion-row>
       <ion-col>
         <h6>Avistamientos:</h6>
-      <ion-badge item-end color="{{ mine < 1 ? 'danger' : 'secondary' }}">{{ mine }}</ion-badge>
+      </ion-col>
+      <ion-col style="text-align: right;">
+        <ion-badge item-end color="{{ mine < 1 ? 'danger' : 'secondary' }}">{{ mine }}</ion-badge>
       </ion-col>
     </ion-row>
 
@@ -45,13 +47,20 @@
   </ion-grid>
 
 
+  <ion-list>
 
-
-  <ion-card>
-    <img src=""/>
-    <div class="tit-detalle"></div>
-    <div class="card-subtitle"></div>
-  </ion-card>
+        <ion-card *ngFor="let avistamiento of avistamientos">
+          <ion-card-content>
+            <ion-card-title>
+              <h2>{{ avistamiento.place }}</h2>
+            </ion-card-title>
+            <p>
+              (Long.: {{ avistamiento.long }} - Lat.: {{ avistamiento.lat }})
+            </p>
+          </ion-card-content>
+        </ion-card>
+    
+    </ion-list>
 
   
 	
