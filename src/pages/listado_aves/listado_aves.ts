@@ -19,10 +19,11 @@ export class ListadoAvesPage {
 
   constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public loadingCtrl: LoadingController) {
   	
+  	// Obtenemos id usuario
   	this.idUser = navParams.get("idUser");
-
   	console.log("idUser listado: " + this.idUser);
 
+  	// Definimos loader
   	this.loadingCtrl = loadingCtrl;
 
   	let loader = this.loadingCtrl.create({
@@ -31,6 +32,7 @@ export class ListadoAvesPage {
   	});
   	loader.present();
 
+  	// Obtenemos el listado de aves
   	this.getListaAves().then((x) => {
         if (x) loader.dismiss();
     }); 
@@ -38,14 +40,14 @@ export class ListadoAvesPage {
   }
 
 
+
    getListaAves() {
 	   	return new Promise((resolve) => {
 		  	var link = 'http://dev.contanimacion.com/birds/public/getBirds/' + this.idUser;
 			 this.http.get(link, {headers: {'Content-Type' : 'application/json'}})
 			 .subscribe(data => {
-			 	
-			 	this.data.r_status = data["status"];
 
+			 	// Asignamos resultados
 			 	this.aves = data;
 
 			 	resolve(true);
@@ -59,10 +61,10 @@ export class ListadoAvesPage {
 
 
   
-
   verDetalle(idAve: string) {
   	console.log("Has tocado: " + idAve);
 
+  	// Avanzar a pantalla de detalle pasando el id del ave seleccionada
   	this.navCtrl.push(DetalleAvePage, {
       			idAve: idAve,
     		});
@@ -71,6 +73,7 @@ export class ListadoAvesPage {
 
 
   irAddAve() {
+  	// Avanzar a pantalla añadir ave, pasando id usuario
   	this.navCtrl.push(AddAvePage, {
       			idUser: this.idUser,
     		});

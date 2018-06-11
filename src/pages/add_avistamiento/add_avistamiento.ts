@@ -63,6 +63,7 @@ export class AddAvistamientoPage {
   }
 
 
+
   addAvistamiento() {
 
 	var link = 'http://dev.contanimacion.com/birds/public/addSighting/';
@@ -70,8 +71,6 @@ export class AddAvistamientoPage {
 	 
 	 this.http.post(link, myData, {headers: {'Content-Type': 'application/json'}})
 	 .subscribe(data => {
-
-	 	//data = data.json();
 
 	 	this.data.r_status = data["status"]; 
 

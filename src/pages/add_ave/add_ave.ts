@@ -47,10 +47,12 @@ export class AddAvePage {
   }
 
 
+
   addAve() {
   	var link = 'http://dev.contanimacion.com/birds/public/addBird/';
   	var myData;
 
+  	// Si el check está activado
   	if (this.addAvis) {
 
   		if(this.localizacionPermitida){
@@ -68,8 +70,6 @@ export class AddAvePage {
 
   	this.http.post(link, myData, {headers: {'Content-Type' : 'application/json'}})
 	 .subscribe(data => {
-
-	 	//data = data.json();
 		
 		if (data["status"] === "OK") {
 			console.log("Se ha insertado una nueva ave");
@@ -99,6 +99,7 @@ export class AddAvePage {
 	 });
 
   }
+
 
 
   obtenerLocalizacion() {

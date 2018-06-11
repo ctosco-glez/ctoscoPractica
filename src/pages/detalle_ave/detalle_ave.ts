@@ -50,7 +50,6 @@ export class DetalleAvePage {
 	 	.subscribe(data => { 
 
 			console.log("Peticion detalle antes: " + data["_body"]);
-	 		//data = data.json();
 
 			this.imagen = data[0]["bird_image"];
 			this.nombre = data[0]["bird_name"];
