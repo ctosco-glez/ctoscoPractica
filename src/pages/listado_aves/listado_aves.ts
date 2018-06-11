@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { NavParams } from 'ionic-angular';
+import { NavController, LoadingController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { DetalleAvePage } from '../detalle_ave/detalle_ave';
@@ -17,35 +16,52 @@ export class ListadoAvesPage {
   idUser: string;
   aves: any[];
 
+  loadingCtrl: LoadingController;
 
-  constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams) {
+
+  constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams, public loadingCtrl: LoadingController) {
   	
   	this.idUser = navParams.get("idUser");
 
   	console.log("idUser listado: " + this.idUser);
 
-  	this.solicitarListadoAves();
- 
+  	this.loadingCtrl = loadingCtrl;
+
+  	let loader = this.loadingCtrl.create({
+  	content: 'Obteniendo listado de aves...',
+      dismissOnPageChange: false
+  	});
+  	loader.present();
+
+  	this.getListaAves().then((x) => {
+        if (x) loader.dismiss();
+    }); 
+
   }
 
 
-  solicitarListadoAves() {
+   getListaAves() {
+	   	return new Promise((resolve) => {
+		  	var link = 'http://dev.contanimacion.com/birds/public/getBirds/' + this.idUser;
+			 this.http.get(link, {headers: {'Content-Type' : 'application/json'}})
+			 .subscribe(data => {
+			 	
+			 	this.data.r_status = data["status"];
 
-  	var link = 'http://dev.contanimacion.com/birds/public/getBirds/' + this.idUser;
-	 
-	 this.http.get(link, {headers: {'Content-Type' : 'application/json'}})
-	 .subscribe(data => {
-	 	
-	 	this.data.r_status = data["status"];
+			 	data = data.json();
+			 	this.aves = data;
 
-	 	data = data.json();
-	 	this.aves = data;
+			 	resolve(true);
+			 }, error => {
 
-	 }, error => {
-	 	console.log("No se han podido obtener aves");
-	 });
-  }
+			 	resolve(true);
+			 	console.log("No se han podido obtener aves");
+			});
+	  	})
+	}
 
+
+  
 
   verDetalle(idAve: string) {
   	console.log("Has tocado: " + idAve);
