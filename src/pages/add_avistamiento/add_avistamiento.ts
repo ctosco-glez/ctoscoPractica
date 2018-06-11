@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -25,7 +25,7 @@ export class AddAvistamientoPage {
   localizacionPermitida: boolean = false;
 
 
-  constructor(public navCtrl: NavController, public http: Http, public geolocation: Geolocation, public fb: FormBuilder, public navParams: NavParams, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public geolocation: Geolocation, public fb: FormBuilder, public navParams: NavParams, public toastCtrl: ToastController) {
 
   	// Obtener id ave
   	this.idAve = navParams.get("idAve");
@@ -71,7 +71,7 @@ export class AddAvistamientoPage {
 	 this.http.post(link, myData, {headers: {'Content-Type': 'application/json'}})
 	 .subscribe(data => {
 
-	 	data = data.json();
+	 	//data = data.json();
 
 	 	this.data.r_status = data["status"]; 
 

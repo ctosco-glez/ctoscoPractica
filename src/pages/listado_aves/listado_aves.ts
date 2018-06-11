@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, NavParams } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { DetalleAvePage } from '../detalle_ave/detalle_ave';
 import { AddAvePage } from '../add_ave/add_ave';
@@ -14,12 +14,10 @@ export class ListadoAvesPage {
 
   data:any = {};
   idUser: string;
-  aves: any[];
-
-  loadingCtrl: LoadingController;
+  aves;
 
 
-  constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public loadingCtrl: LoadingController) {
   	
   	this.idUser = navParams.get("idUser");
 
@@ -48,7 +46,6 @@ export class ListadoAvesPage {
 			 	
 			 	this.data.r_status = data["status"];
 
-			 	data = data.json();
 			 	this.aves = data;
 
 			 	resolve(true);

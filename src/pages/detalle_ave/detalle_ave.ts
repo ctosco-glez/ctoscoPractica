@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, NavParams } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { AddAvistamientoPage } from '../add_avistamiento/add_avistamiento';
 
@@ -23,13 +23,11 @@ export class DetalleAvePage {
   
 
 
-  constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public loadingCtrl: LoadingController) {
   	
  	this.idAve = navParams.get("idAve");
 
   	console.log("idAve ver detalle: " + this.idAve);
-
-  	//this.solicitarDetalleAve();
 
   	let loader = this.loadingCtrl.create({
   	content: 'Obteniendo listado de aves...',
@@ -43,29 +41,6 @@ export class DetalleAvePage {
   }
 
 
-  solicitarDetalleAve() {
-	 var link = 'http://dev.contanimacion.com/birds/public/getBirdDetails/' + this.idAve;
-	 
-	 this.http.get(link, {headers: {'Content-Type' : 'application/json'}})
-	 .subscribe(data => { 
-
-		console.log("Peticion detalle antes: " + data["_body"]);
-	 	data = data.json();
-
-		this.imagen = data[0]["bird_image"];
-		this.nombre = data[0]["bird_name"];
-		this.mine = data[0]["bird_sightings"];
-		this.descripcion = data[0]["bird_description"];
-
-		this.avistamientos = data[0]["sightings_list"];
-
-
-	 }, error => {
-	 	console.log("No ha sido posible obtener los datos del ave seleccionada.");
-	 });
-  }
-
-
 
   getDetalleAve() {
   	return new Promise((resolve) => {
@@ -75,7 +50,7 @@ export class DetalleAvePage {
 	 	.subscribe(data => { 
 
 			console.log("Peticion detalle antes: " + data["_body"]);
-	 		data = data.json();
+	 		//data = data.json();
 
 			this.imagen = data[0]["bird_image"];
 			this.nombre = data[0]["bird_name"];

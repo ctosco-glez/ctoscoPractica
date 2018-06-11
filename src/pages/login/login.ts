@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import { MenuPage } from '../menu/menu';
@@ -19,7 +19,7 @@ export class LoginPage {
 
   
 
-  constructor(public navCtrl: NavController, public http: Http, public fb: FormBuilder) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public fb: FormBuilder) {
   	this.data.userlabel = '';
   	this.data.passlabel = '';
 
@@ -39,12 +39,10 @@ export class LoginPage {
 	 
 	 this.http.post(link, myData, { headers: { 'Content-Type': 'application/json' }} )
 	 .subscribe(data => {
-	 	
-		data = data.json();
 
 		this.id = data["id"];
 
-		console.log("Peticion login: " + this.id);
+		console.log("Id: " + this.id);
 
 		// Ir a pág menú
 		if (this.id != ''){

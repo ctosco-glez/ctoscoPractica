@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -28,7 +28,7 @@ export class AddAvePage {
 
 
 
-  constructor(public navCtrl: NavController, public http: Http, public fb: FormBuilder, public navParams: NavParams, public toastCtrl: ToastController, public geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public fb: FormBuilder, public navParams: NavParams, public toastCtrl: ToastController, public geolocation: Geolocation) {
   	// Obtener id user
   	this.idUser = navParams.get("idUser");
 
@@ -69,9 +69,9 @@ export class AddAvePage {
   	this.http.post(link, myData, {headers: {'Content-Type' : 'application/json'}})
 	 .subscribe(data => {
 
-	 	data = data.json();
+	 	//data = data.json();
 		
-		if (data.status == "OK") {
+		if (data["status"] === "OK") {
 			console.log("Se ha insertado una nueva ave");
 
 			let toast = this.toastCtrl.create({
@@ -92,7 +92,7 @@ export class AddAvePage {
 			console.log("No se ha insertado el ave");
 		}
 
-		console.log("Peticion add bird: " + data.status);
+		console.log("Peticion add bird: " + data["status"]);
 
 	 }, error => {
 	 	console.log("No se ha podido insertar el ave");
